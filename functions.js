@@ -120,11 +120,28 @@ function collision(x, y, rotatedPiece) {
   return false;
 }
 
-function rotate() {
-  let rotatedPiece = [];
-  let piece = fallingPieceObj.piece;
-  rotatedPiece = piece;
+function moveLeft() {
+  if (!collision(fallingPieceObj.x - 1, fallingPieceObj.y))
+    fallingPieceObj.x -= 1;
+  renderGame();
+}
 
+function moveRight() {
+  if (!collision(fallingPieceObj.x + 1, fallingPieceObj.y))
+    fallingPieceObj.x += 1;
+  renderGame();
+}
+
+function rotate() {
+  let piece = fallingPieceObj.piece;
+  let rotatedPiece = [];
+
+  for (let i = 0; i < piece.length; i++) {
+    rotatedPiece.push([]);
+    for (let j = 0; j < piece[i].length; j++) {
+      rotatedPiece[i].push(0);
+    }
+  }
   for (let i = 0; i < piece.length; i++) {
     for (let j = 0; j < piece[i].length; j++) {
       rotatedPiece[i][j] = piece[j][i];
@@ -136,17 +153,5 @@ function rotate() {
   }
   if (!collision(fallingPieceObj.x, fallingPieceObj.y, rotatedPiece))
     fallingPieceObj.piece = rotatedPiece;
-  renderGame();
-}
-
-function moveLeft() {
-  if (!collision(fallingPieceObj.x - 1, fallingPieceObj.y))
-    fallingPieceObj.x -= 1;
-  renderGame();
-}
-
-function moveRight() {
-  if (!collision(fallingPieceObj.x + 1, fallingPieceObj.y))
-    fallingPieceObj.x += 1;
   renderGame();
 }

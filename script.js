@@ -60,7 +60,9 @@ let grid = generateGrid();
 let fallingPieceObj = null;
 let score = 0;
 let gameInterval;
+
 setInterval(newGameState, 500);
+
 document.querySelector("#start-button").addEventListener("click", startGame);
 
 function startGame() {
